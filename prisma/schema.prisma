@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Operator {
+  operadora1
+  operadora2
+  operadora3
+}
+
+enum Plans {
+  APPS
+  GAMES
+  KIDS
+}
+
+model User {
+  id String @id @default(uuid())
+  phoneNumber String @unique
+  operator Operator
+  region String
+  plan Plans
+  created_at DateTime @default(now())
+  update_at DateTime @default(now())
+  @@map("users")
+}

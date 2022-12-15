@@ -36,7 +36,7 @@ export class UserService {
         async update(id: string, data: UserDTO){
             const userExists = await this.prisma.user.findUnique({
                 where: {
-                    phoneNumber : data.phoneNumber
+                    id,
                 }
             })
 
